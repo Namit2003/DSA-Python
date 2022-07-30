@@ -1,0 +1,9 @@
+def solve(n, arr):
+    ans = []
+    flags = [False for x in range(n+2)]
+    for el in arr:
+        flags[el] = True
+    for i in range(n+2):
+        if flags[i]==False:
+            ans.append(i)
+    return ans
