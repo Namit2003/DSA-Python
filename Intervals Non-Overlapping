@@ -1,0 +1,20 @@
+def solve(interval):
+    interval.sort()
+    count = 0
+    ci = interval[0]
+    x = 1
+    for ni in interval:
+        if x==1:
+            x+=1
+            continue
+        if ni[0]<ci[1]:
+            if ci[1]>=ni[1]:
+                ci = ni
+                count+=1
+                continue
+            else:
+                count+=1
+                continue
+        ci = ni
+        x+=1
+    return count
