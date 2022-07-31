@@ -1,0 +1,15 @@
+def solve(n, arr):
+    ans = [1]*n
+    ans2 = [1]*n
+    for i in range(n):
+        if i==0:
+            ans[i] = 1
+        else:
+            ans[i] = ans[i-1]*arr[i-1]
+    for i in range(n-1,-1,-1):
+        if i == n-1:
+            ans2[i] = 1
+        else:
+            ans2[i] = ans2[i+1]*arr[i+1]
+        ans[i]*=ans2[i]
+    return ans
