@@ -1,0 +1,14 @@
+def solve(intervals):
+    intervals.sort()
+    ans = []
+    ci = intervals[0]
+
+    for ni in intervals:
+        if ci[1]>=ni[0]:
+            if ci[1]<ni[1]:
+                ci[1]=ni[1]
+        else:
+            ans.append(ci)
+            ci = ni
+    ans.append(ci)
+    return ans
