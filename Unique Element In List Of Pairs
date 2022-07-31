@@ -1,0 +1,5 @@
+def solve(n, nums):
+    ans = 0
+    for x in nums:
+        ans^=x
+    return ans
