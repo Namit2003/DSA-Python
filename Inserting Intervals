@@ -1,0 +1,34 @@
+def solve(intervals, n, arr):
+    # ONLY INSERTING ARR AT RIGHT INDEX
+    m = len(intervals)
+    fi = intervals[0]
+    li = intervals[m-1]
+    intervals.append([])
+    if arr[0]<=fi[0]:
+        for i in range(m-1,-1,-1):
+            intervals[i+1] = intervals[i]
+        intervals[0] = arr
+    elif arr[0]>=li[0]:
+        intervals[m] = arr
+    else:
+        for i in range(m):
+            ci = intervals[i]
+            ni = intervals[i+1]
+            if arr[0]>=ci[0] and arr[0]<=ni[0]:
+                for y in range(m-1,i,-1):
+                    intervals[y+1] = intervals[y]
+                intervals[i+1] = arr
+                break
+    # MERGING INTERVALS
+    ans = []
+    ci = intervals[0]
+
+    for ni in intervals:
+        if ci[1]>=ni[0]:
+            if ci[1]<ni[1]:
+                ci[1]=ni[1]
+        else:
+            ans.append(ci)
+            ci = ni
+    ans.append(ci)
+    return ans   
