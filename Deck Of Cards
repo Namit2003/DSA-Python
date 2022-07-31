@@ -1,0 +1,23 @@
+# FUNCTION TO CALCULATE GCD
+def gcd(a,b):
+    if b==0:
+        return a
+    return gcd(b,a%b)
+
+def solve(n, deck):
+    # CONVERTING DECK INTO HASMAP FOR FREQUENCIES
+    m = {}
+    for el in deck:
+        if el in m:
+            m[el]+=1
+        else:
+            m[el]=1
+    
+    # CALCULATING GCD OF THE FREQUENCIES
+    g = m[deck[0]]
+    for freq in m.values():
+        g = gcd(max(g,freq),min(g,freq))
+        if g==1:
+            return 0
+    
+    return 1 if g>1 else 0
