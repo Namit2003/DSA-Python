@@ -1,0 +1,20 @@
+def solve(n, nums):
+    ans = []
+    if n<3:
+        return ans
+    nums.sort()
+    for i in range(n-2):
+        j = i+1
+        k = n-1
+        while(j<k):
+            if nums[i]+nums[j]+nums[k]==0:
+                a = [nums[i],nums[j],nums[k]]
+                if a not in ans:
+                    ans.append(a)
+                j+=1
+                k-=1
+            if nums[i]+nums[j]+nums[k]<0:
+                j+=1
+            if nums[i]+nums[j]+nums[k]>0:
+                k-=1
+    return ans
