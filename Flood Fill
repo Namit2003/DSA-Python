@@ -1,0 +1,18 @@
+def solve(image , sr, sc, color):
+    # IF IT'S THE SAME COLOR THAN RETURN
+    og_color = image[sr][sc]
+    if og_color == color:
+        return image
+    
+    # IF NOT THAN COLOR ITSELF AND CHECK FOR THE SURROUNDINGS
+    image[sr][sc] = color
+    if sr>0 and image[sr-1][sc] == og_color:
+        solve(image , sr-1, sc, color)
+    if sc>0 and image[sr][sc-1] == og_color:
+        solve(image , sr, sc-1, color)
+    if sr<len(image)-1 and image[sr+1][sc] == og_color:
+        solve(image , sr+1, sc, color)
+    if sc<len(image[0])-1 and image[sr][sc+1] == og_color:
+        solve(image , sr, sc+1, color)
+    
+    return image
