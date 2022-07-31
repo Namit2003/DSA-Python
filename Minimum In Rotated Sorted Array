@@ -1,0 +1,17 @@
+def solve(n, nums):
+    if n==1:
+        return nums[0]
+    l = 0
+    r = n-1
+    if nums[l]<nums[r]:
+        return nums[l]
+    while(l<=r):
+        m = (l+r)//2
+        if m==l:
+            if nums[l]<nums[r]:
+                return nums[l]
+            return nums[r]
+        if nums[m]<nums[r]:
+            r = m
+        elif nums[m]>nums[l]:
+            l = m+1
