@@ -1,0 +1,10 @@
+def solve(n, arr, target):
+    l = 0
+    r = n-1
+    while(l<r):
+        if arr[l]+arr[r]==target:
+            return [l+1,r+1]
+        if arr[l]+arr[r]>target:
+            r-=1
+        if arr[l]+arr[r]<target:
+            l+=1
