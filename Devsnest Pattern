@@ -1,0 +1,23 @@
+import math
+
+def solve(m, n):
+    x = (n-3)/2
+    x = int(x)
+    y = math.ceil(m/2)
+    r = (n-9)/2
+    r = int(r)
+    str1 = []
+    
+    for i in range(1,y):
+        arr1 = '-'*x
+        arr2 = arr1
+        arr3 = [arr1,arr2]
+        a = ('.|.'*(2*i-1)).join(arr3)
+        str1.append(a)
+        x-=3
+    
+    str2 = str1[::-1]
+    dev = '-'*r + 'DEVSNEST!' + '-'*r
+    str1.append(dev)
+    
+    return str1 + str2
