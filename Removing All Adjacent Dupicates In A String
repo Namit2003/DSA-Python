@@ -1,0 +1,8 @@
+def solve(s):
+    st = []
+    for el in s:
+        if len(st)==0 or st[-1]!=el:
+            st.append(el)
+        else:
+            st.pop()
+    return "".join(st)
