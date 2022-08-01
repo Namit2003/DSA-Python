@@ -1,0 +1,44 @@
+def solve(n, height):
+    start = 0
+    end = n-1
+
+    # REMOVING UNNECESSARY BLOCKS FROM FRONT
+    for i in range(n-1):
+        if height[i+1]<height[i]:
+            start = i
+            break
+    
+    # REMOVING UNNECESSARY BLOCKS FROM BACK
+    for i in range(n-1,0,-1):
+        if height[i-1]<height[i]:
+            end = i
+            break
+    
+    i = start
+    unit = 0
+    j = 0
+    while(i<end):
+        flag = False
+
+        #IF WE HAVE TALLER WALL IN THE REMAINING PART
+        for inx in range(i+1,end+1):
+            if height[inx]>=height[i]:
+                max_height = height[i]
+                flag = True
+                j = inx
+                break
+        
+        #IF WE DON'T HAVE TALLER WALL IN THE REMAINING PART
+        if not flag:
+            max_height = height[i+1]
+            j = i+1
+            for inx in range(i+1,end+1):
+                if height[inx]>max_height:
+                    max_height = height[inx]
+                    j = inx
+        
+        # CALCULATING UNITS OF WATER
+        for inx in range(i+1,j):
+            unit += (max_height-height[inx])
+        i = j
+    return unit
