@@ -1,0 +1,14 @@
+def solve(n, pages, capacity):
+    q = deque()
+    q_set = set()
+    page_faults = 0
+
+    for pgs in pages:
+        if pgs not in q_set:
+            if len(q_set)==capacity:
+                t = q.pop()
+                q_set.remove(t)
+            q.appendleft(pgs)
+            q_set.add(pgs)
+            page_faults+=1
+    return page_faults
