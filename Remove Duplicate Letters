@@ -1,0 +1,20 @@
+def solve(s):
+    l = len(s)
+    st = []
+    sett = set()
+    last = {}
+    for i,el in enumerate(s):
+        last[el] = i
+    
+    for i in range(l):
+        if s[i] in sett:
+            continue
+        while st:
+            if st[-1]>s[i] and last[st[-1]]>i:
+                sett.remove(st[-1])
+                st.pop()
+            else:
+                break
+        st.append(s[i])
+        sett.add(s[i])
+    return "".join(st)
