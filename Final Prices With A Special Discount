@@ -1,0 +1,17 @@
+def solve(n, prices):
+    st = []
+    extra = [0]*n
+    ans = [0]*n
+
+    for i in range(n-1,-1,-1):
+        while st and st[-1]>prices[i]:
+            st.pop()
+        if not st:
+            extra[i]=0
+        else:
+            extra[i]=st[-1]
+        st.append(prices[i])
+    
+    for i in range(n):
+        ans[i] = prices[i] - extra[i]
+    return ans
