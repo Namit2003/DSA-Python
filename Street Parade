@@ -1,0 +1,18 @@
+def solve(n, order):
+    st = []
+    ans = []
+
+    for i in range(n-1):
+        if order[i]>order[i+1]:
+            if not st or st[-1]>order[i]:
+                st.append(order[i])
+            else:
+                return 0
+        else:
+            ans.append(order[i])
+            if len(ans)>1 and ans[-1]<ans[-2]:
+                return 0
+            while st and st[-1]<order[i+1]:
+                ans.append(st[-1])
+                st.pop()
+    return 1
