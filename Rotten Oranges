@@ -1,0 +1,33 @@
+def solve(grid):
+    # INITIALIZING THE QUEUE
+    q = deque()
+
+    row = len(grid)
+    col = len(grid[0])
+    fresh_oranges = 0
+
+    # COUNTING FRESH ORANGES AND ADDING ROTTEN ONES IN QUEUE
+    for i in range(row):
+        for j in range(col):
+            if grid[i][j]==1:
+                fresh_oranges+=1
+            elif grid[i][j]==2:
+                q.append((i,j,0))
+    # IF NO FRESH ORANGES THAN TIME=0
+    if fresh_oranges==0:
+        return 0
+    
+    directions = [(1,0),(-1,0),(0,1),(0,-1)]
+    
+    while q:
+        i, j, t = q.pop()
+        for di,dj in directions:
+            ni, nj = i+di, j+dj
+            if 0<=ni<row and 0<=nj<col and grid[ni][nj]==1:
+                fresh_oranges-=1
+                if fresh_oranges==0:
+                    return t+1
+                grid[ni][nj]=2
+                q.appendleft((ni,nj,t+1))
+    
+    return -1
