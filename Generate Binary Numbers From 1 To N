@@ -1,0 +1,14 @@
+def solve(n):
+    bin_q = deque()
+    bin_q.append(1)
+    ans = []
+
+    while len(bin_q)<=n:
+        t = bin_q.pop()
+        ans.append(t)
+        n1 = t*10
+        n2 = (t*10)+1
+        bin_q.appendleft(n1)
+        bin_q.appendleft(n2)
+    
+    return ans
