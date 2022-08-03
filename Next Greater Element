@@ -1,0 +1,24 @@
+def solve(n, nums):
+    st = []
+    ans = deque()
+    inx = 0
+
+    for i in range(n-1,-1,-1):
+        while st and st[-1]<=nums[i]:
+            st.pop()
+        if not st:
+            flag = False
+            for j in range(inx,i):
+                if nums[j]>nums[i]:
+                    inx = j
+                    flag = True
+                    break
+            if flag:
+                ans.appendleft(nums[inx])
+            else:
+                ans.appendleft(-1)
+        else:
+            ans.appendleft(st[-1])
+        st.append(nums[i])
+    
+    return ans
