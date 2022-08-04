@@ -1,0 +1,15 @@
+def solve(head):
+    count = 0
+    start = head
+    while start:
+        count+=1
+        start = start.next
+    
+    num = 0
+    
+    while head:
+        count-=1
+        num += head.data*(2**count)
+        head = head.next
+    
+    return num
