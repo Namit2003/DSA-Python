@@ -1,0 +1,11 @@
+def solve(head, key):
+    while head.data==key:
+        head = head.next
+    start = head
+    while head.next:
+        if head.next.data==key:
+            head.next = head.next.next
+        else:
+            head = head.next
+    head = start
+    return head
