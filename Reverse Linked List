@@ -1,0 +1,12 @@
+def solve(head):
+    if not head or head.next==None:
+        return head
+    p,c,n = head, head.next, head.next.next
+    while n:
+        c.next = p
+        p = c
+        c = n
+        n = n.next
+    head.next = None
+    c.next = p
+    return c
